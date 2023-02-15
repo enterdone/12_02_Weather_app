@@ -2,8 +2,9 @@
   "name": "weather_cli",
   "version": "1.0.0",
   "description": "CLI for weather",
-  "main": "index.js",
-  "scripts": {
+  "main": "weather_12.js",
+  "type": "module",
+    "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
