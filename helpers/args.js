@@ -7,7 +7,7 @@ const getArgs = (args) =>{
 	rest.forEach((value,index,arr) => {    //value = -s, -h,else
 		let firstChar = value.charAt(0)
 		if (firstChar == "-"){
-			res[value.slice(1)]=true
+			res[value.slice(1)]=arr[index+1]
 			
 		}
 		

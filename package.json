@@ -4,7 +4,7 @@
   "description": "CLI for weather",
   "main": "weather_12.js",
   "type": "module",
-    "scripts": {
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -12,5 +12,8 @@
     "test"
   ],
   "author": "Noname",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.2.0"
+  }
 }
