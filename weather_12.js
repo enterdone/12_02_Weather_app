@@ -16,7 +16,7 @@ const saveToken = async (token) =>{
 	} catch (e) {
 		printError(e.message)
 	}
-	getWeather('moscow')
+	
 }
 
 
@@ -44,5 +44,6 @@ const initCLI = () => {
 	if (args.h) {
 		printHelp()
 	}
+	getWeather('moscow')
 }
 initCLI()
