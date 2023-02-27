@@ -12,27 +12,6 @@ const getWeather = async (city) => {
 
 
 
-	const isLena = (text) => {
-		const result = {};
-		const objects = [];
-		text = ();text.replace(/[^a-zA-Z]/g, "").toLowerCase
-			 
-			 if (!result[item]) {
-				  result[item] = 1;
-			 } else {
-			 result[item] += 1;
-			 }
-		}
-		 const entries = Object.entries(result);
-		 for (const [key, value] of entries) {
-			  objects.push({letter: key, count: value})
-		 } 
-		 
-		 
-		 
-  
-		return(objects.sort((a, b) => Math.sign(a.count - b.count)));
-  }
   
 
 
@@ -68,13 +47,38 @@ const getWeather = async (city) => {
 
 
 ///////////////////////////////////
-/////////////ПРИМЕР НА NEW URL
-// 	// const url = "https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
-// 	const url = new URL("https://api.openweathermap.org/data/2.5/weather")
-// 	url.searchParams.append('q', city);
-// 	url.searchParams.append('appid', token);
-// 	url.searchParams.append('lang', 'ru');
-// 	url.searchParams.append('units', 'metric');
+///////////ПРИМЕР НА NEW URL
+const getWeather = async (city) => {
+	
+	// const url = "https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}"
+	const url = new URL("https://api.openweathermap.org/data/2.5/weather")
+	url.searchParams.append('q', city);
+	url.searchParams.append('appid', token);
+	url.searchParams.append('lang', 'ru');
+	url.searchParams.append('units', 'metric');
+
+
+	console.log("console log url"+url)
+	return new Promise((resolve, reject) => {
+		https.get(url, (response) => {
+		  let res = '';
+  
+		  response.on('data', (chunk) => {
+			 res += chunk;
+		  });
+  
+		  response.on('end', () => {
+			 resolve(res);
+			 console.log("console.log(res)"+res)
+		  });
+  
+		  response.on('error', (error) => {
+			console.log("console.log(\"WTF??\"+error)\n\\n"+error)
+			 reject(error);
+		  });
+		});
+	 });
+  }
 
 // console.log(url)
 // 	https.get(url, (response) => {
@@ -89,6 +93,6 @@ const getWeather = async (city) => {
 
 // 		response.on("error", (error)=>{ console.log("WTF??"+error)})
 // 	})
-}
+// }
 
 export { getWeather }
