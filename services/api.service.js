@@ -1,3 +1,4 @@
+import axios from "axios";
 import https from "https";
 import { getKeyValue } from "./storage.service.js";
 
@@ -8,8 +9,18 @@ const getWeather = async (city) => {
 		throw new Error("not have Token. Sry :( \n try get it for my by command -t [API KEY]")
 	}
 
-
-
+	const {data} = await axios.get("https://api.openweathermap.org/data/2.5/weather",{
+		params:{
+			q: city,
+			appid: token,
+			lang: "ru",
+			units: "metric"
+		}
+	})
+	// console.log(data)
+return(data)
+}
+	export { getWeather }
 
 
   
@@ -25,26 +36,26 @@ const getWeather = async (city) => {
 
 // /*это в фунцию getweather*/const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${token}&lang=ru&units=metric`;
 //ИЛИ
-const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + token + "&lang=ru&units=metric";
+// const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + token + "&lang=ru&units=metric";
 
-console.log(apiUrl);
+// console.log(apiUrl);
 
-fetch(apiUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-    // здесь можно обрабатывать полученные данные
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-  });
+// fetch(apiUrl)
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error('Network response was not ok');
+//     }
+//     return response.json();
+//   })
+//   .then(data => {
+//     console.log(data);
+//     // здесь можно обрабатывать полученные данные
+//   })
+//   .catch(error => {
+//     console.error('There was a problem with the fetch operation:', error);
+//   });
 
-}
+// }
 
 ///////////////////////////////////
 // ///////////ПРИМЕР НА NEW URL
@@ -94,5 +105,3 @@ fetch(apiUrl)
 // 		response.on("error", (error)=>{ console.log("WTF??"+error)})
 // 	})
 // }
-
-export { getWeather }

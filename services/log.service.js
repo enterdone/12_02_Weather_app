@@ -20,4 +20,13 @@ const printHelp = () => {
 	 `);
 } 
 
-export { printError, printSuccess, printHelp}
+const printWeather = (...args) => {
+	let colorData = {		1: "green", 2: "yellow", 3: "bgBlueBright"};
+	let i = 1;
+	for (let val of args) {
+		console.log(`${chalk[colorData[i]](val)}`);
+		i < 3 ? i++ : i = 1
+	}
+}
+
+export { printError, printSuccess, printHelp,printWeather}

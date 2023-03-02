@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 //C:\Users\Max\weater-data.json tokens here
 import { getArgs } from "./helpers/args.js" //process.argv split to {}
-import { printError, printSuccess, printHelp } from "./services/log.service.js"
+import { printError, printSuccess, printHelp ,printWeather} from "./services/log.service.js"
 import { saveKeyValue, getKeyValue } from "./services/storage.service.js"
 import {getWeather} from "./services/api.service.js"
 
@@ -19,12 +19,7 @@ const saveToken = async (token) =>{
 	
 }
 
-
-
-
-
-
-const initCLI = () => {
+const initCLI = async () => {
 	const args = getArgs(process.argv) // PROCESS.ARGV == " ["executer(node)"] ,
 	//  [File dir] , [first commans like -x] , [...] "
 	if (process.argv.length > 2) {
@@ -44,6 +39,9 @@ const initCLI = () => {
 	if (args.h) {
 		printHelp()
 	}
-	getWeather('moscow')
+	let answer = await getWeather('batumi')
+	printWeather(answer,"answer \n",answer.name, answer.main.temp,answer.main.humidity, answer.main.feels_like, answer.weather[0].description)
+	// console.log(answer,"answer \n",answer.name, answer.main.temp, answer.main.feels_like, answer.weather[0].description)
 }
 initCLI()
+console.log(process.env.TEST)
